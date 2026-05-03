@@ -1,6 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { Heart, Star, ShoppingBag } from "lucide-react";
 import type { Product } from "@/data/products";
+import { motion } from "framer-motion";
+
+const MotionLink = motion.create(Link);
 
 const tagStyle: Record<string, string> = {
   New: "bg-ink text-background",
@@ -11,10 +14,12 @@ const tagStyle: Record<string, string> = {
 
 export function ProductCard({ p, compact = false }: { p: Product; compact?: boolean }) {
   return (
-    <Link
+    <MotionLink
       to="/product/$id"
       params={{ id: p.id }}
       className="group block product-card-hover bg-card rounded-2xl overflow-hidden border border-border/60"
+      whileHover={{ scale: 1.03, y: -4, boxShadow: "0 10px 40px -10px rgba(0,0,0,0.1)" }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
     >
       <div className="relative aspect-square overflow-hidden bg-beige">
         <img 
@@ -66,6 +71,6 @@ export function ProductCard({ p, compact = false }: { p: Product; compact?: bool
           )}
         </div>
       </div>
-    </Link>
+    </MotionLink>
   );
 }
