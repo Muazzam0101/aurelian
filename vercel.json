@@ -1,0 +1,7 @@
+{
+  "buildCommand": "cd premium-style-hub-main && npm install && npm run build",
+  "outputDirectory": "premium-style-hub-main/dist",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
