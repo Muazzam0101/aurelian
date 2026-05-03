@@ -37,11 +37,12 @@ function Detail() {
 
   return (
     <Layout>
-      <Container className="py-8">
-        <p className="text-xs text-muted-foreground mb-6">Home / {p.category} / {p.brand} / <span className="text-ink">{p.name}</span></p>
-        <div className="grid lg:grid-cols-2 gap-10">
-          <div className="grid grid-cols-[80px_1fr] gap-3">
-            <div className="space-y-3">
+      <Container className="py-6 sm:py-8">
+        <p className="text-xs text-muted-foreground mb-4 sm:mb-6 truncate">Home / {p.category} / {p.brand} / <span className="text-ink">{p.name}</span></p>
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-10">
+          {/* Images */}
+          <div className="grid grid-cols-[64px_1fr] sm:grid-cols-[80px_1fr] gap-2 sm:gap-3">
+            <div className="space-y-2 sm:space-y-3">
               {(p.images ?? [p.image]).map((src, i) => (
                 <button key={i} onClick={() => setActive(i)} className={`aspect-square rounded-lg overflow-hidden bg-beige ${active===i?"ring-2 ring-ink":""}`}>
                   <img src={src} alt="" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.src = `https://picsum.photos/seed/${p.id}-${i}/900/900`; }} />
@@ -54,7 +55,7 @@ function Detail() {
           </div>
           <div>
             <p className="text-[11px] uppercase tracking-[0.22em] text-ember">{p.brand}</p>
-            <h1 className="font-display text-4xl text-ink mt-2">{p.name}</h1>
+            <h1 className="font-display text-3xl sm:text-4xl text-ink mt-2">{p.name}</h1>
             <div className="flex items-center gap-3 mt-3 text-sm">
               <span className="flex items-center gap-1"><Star className="h-4 w-4 fill-gold text-gold" />{p.rating}</span>
               <span className="text-muted-foreground">· {p.reviews} reviews</span>
@@ -90,15 +91,15 @@ function Detail() {
             </div>
 
             <div className="mt-8 flex gap-3">
-              <button className="flex-1 h-14 rounded-full bg-ink text-background text-sm font-medium tracking-wide flex items-center justify-center gap-2 hover:bg-charcoal">
+              <button className="flex-1 h-12 sm:h-14 rounded-full bg-ink text-background text-sm font-medium tracking-wide flex items-center justify-center gap-2 hover:bg-charcoal transition">
                 <ShoppingBag className="h-4 w-4" /> Add to bag — ${p.price}
               </button>
-              <button className="h-14 w-14 rounded-full border border-ink flex items-center justify-center hover:bg-ink hover:text-background"><Heart className="h-5 w-5" /></button>
+              <button className="h-12 w-12 sm:h-14 sm:w-14 rounded-full border border-ink flex items-center justify-center hover:bg-ink hover:text-background transition shrink-0"><Heart className="h-5 w-5" /></button>
             </div>
 
-            <div className="mt-7 grid grid-cols-3 gap-3 text-xs text-ink">
+            <div className="mt-7 grid grid-cols-3 gap-2 sm:gap-3 text-xs text-ink">
               {[{i:Truck,t:"Free shipping"},{i:ShieldCheck,t:"Lifetime service"},{i:RotateCcw,t:"30-day returns"}].map(({i:I,t})=>(
-                <div key={t} className="rounded-xl border border-border p-3 flex items-center gap-2"><I className="h-4 w-4 text-ember" />{t}</div>
+                <div key={t} className="rounded-xl border border-border p-2 sm:p-3 flex flex-col sm:flex-row items-center sm:items-start gap-1 sm:gap-2 text-center sm:text-left"><I className="h-4 w-4 text-ember shrink-0" /><span>{t}</span></div>
               ))}
             </div>
 
